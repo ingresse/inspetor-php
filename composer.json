@@ -1,0 +1,22 @@
+{
+    "name": "inspetor",
+    "type": "library",
+    "description": "A SDK to communicate with the Inspetor API",
+    "autoload": {
+        "psr-4": {
+            "Inspetor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inspetor\\": "test/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.2"
+    },
+    "require-dev": {
+        "php": ">=7.1",
+        "phpunit/phpunit": "^6.4"
+    }
+}
