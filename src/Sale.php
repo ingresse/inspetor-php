@@ -8,7 +8,8 @@ trait Sale
      * @param  array  $data
      * @return Response
      */
-    public function createSale(array $data) {
+    public function createSale(array $data)
+    {
         return $this->client->sendRequest('post', 'sale', $data);
     }
 
@@ -16,7 +17,8 @@ trait Sale
      * @param  array  $data
      * @return Response
      */
-    public function updateSale(array $data) {
+    public function updateSale(array $data)
+    {
         return $this->client->sendRequest('put', 'sale', $data);
     }
 
@@ -24,7 +26,8 @@ trait Sale
      * @param  array  $data
      * @return Response
      */
-    public function deleteSale(array $data) {
+    public function deleteSale(array $data)
+    {
         return $this->client->sendRequest('delete', 'sale', $data);
     }
 }

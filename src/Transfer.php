@@ -8,7 +8,8 @@ trait Transfer
      * @param  array  $data
      * @return Response
      */
-    public function createTransfer(array $data) {
+    public function createTransfer(array $data)
+    {
         return $this->client->sendRequest('post', 'transfer', $data);
     }
 
@@ -16,7 +17,8 @@ trait Transfer
      * @param  array  $data
      * @return Response
      */
-    public function updateTransfer(array $data) {
+    public function updateTransfer(array $data)
+    {
         return $this->client->sendRequest('put', 'transfer', $data);
     }
 }
