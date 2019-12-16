@@ -1,9 +1,7 @@
 <?php
 namespace Inspetor;
 
-use Ingresse\GatewaySdk\Domain\Response AS ResponseDomain;
-
-class Response implements ResponseDomain
+class Response
 {
     /**
      * @var bool

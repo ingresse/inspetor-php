@@ -33,17 +33,12 @@ class Client
     /**
      * @param GuzzleHttp\Client $guzzleClient
      */
-    public function __construct(GuzzleHttp\Client $guzzleClient = null)
-    {
-        $this->client = $guzzleClient ?? new GuzzleHttp\Client();
-    }
-
-    /**
-     * @param string $token
-     */
-    public function setToken(string $token): void
+    public function __construct($token, array $extras = [])
     {
         $this->token = $token;
+
+        $options = $extras;
+        $this->client = new GuzzleHttp\Client($extras);
     }
 
     /**
@@ -72,18 +67,16 @@ class Client
             !empty($body) ? json_encode($body) : null
         );
 
-        $response = $this->call($request);
-
-        return new Response(
-            true,
-            json_decode($response->getBody()->getContents(), true)['data']
-        );
+        return $this->call($request);
     }
 
     private function call(Request $request)
     {
         try {
-            return $this->client->send($request);
+            return new Response(
+                true,
+                json_decode($this->client->send($request)->getBody()->getContents(), true)
+            );
         } catch (ClientException $e) {
             if ($e->getResponse()->getStatusCode() == 403) {
                 throw new UnauthorizedException;
@@ -100,7 +93,7 @@ class Client
             return new Response(
                 false,
                 null,
-                json_decode($e->getResponse()->getBody()->getContents(), true)['error']
+                json_decode($e->getResponse()->getBody()->getContents(), true)
             );
         }
     }
