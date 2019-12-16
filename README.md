@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/ingresse/inspetor-php.svg?style=svg)](https://circleci.com/gh/ingresse/inspetor-php)
 [![Maintainability](https://api.codeclimate.com/v1/badges/857a977a90b0d8b44123/maintainability)](https://codeclimate.com/github/ingresse/inspetor-php/maintainability)
-[![codecov](https://codecov.io/gh/ingresse/inspetor-api/branch/master/graph/badge.svg?token=eWQ1gz4ZGZ)](https://codecov.io/gh/ingresse/inspetor-api)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/857a977a90b0d8b44123/test_coverage)](https://codeclimate.com/github/ingresse/inspetor-php/test_coverage)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This is a use handler to [Inspetor API](https://inspetor.github.io/docs-backend).
