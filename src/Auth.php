@@ -10,7 +10,7 @@ trait Auth
      */
     public function auth(array $data)
     {
-        return $this->client->sendRequest('delete', 'account', $data);
+        return $this->client->sendRequest('delete', 'auth', $data);
     }
 
     /**
@@ -19,6 +19,6 @@ trait Auth
      */
     public function forgotPassword(array $data)
     {
-        return $this->client->sendRequest('post', 'auth', $data);
+        return $this->client->sendRequest('post', 'forgot-password', $data);
     }
 }
