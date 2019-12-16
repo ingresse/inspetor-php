@@ -1,5 +1,7 @@
 # Inspetor PHP SDK
 
+[![CircleCI](https://circleci.com/gh/ingresse/inspetor-php.svg?style=svg)](https://circleci.com/gh/ingresse/inspetor-php)
+
 This is a use handler to [Inspetor API](https://inspetor.github.io/docs-backend).
 
 ## Usage
