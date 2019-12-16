@@ -37,6 +37,7 @@ class Client
     {
         $this->token = $token;
 
+        $options = $extras;
         $this->client = new GuzzleHttp\Client($extras);
     }
 

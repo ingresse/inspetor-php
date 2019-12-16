@@ -8,8 +8,7 @@ trait Account
      * @param  array  $data
      * @return Response
      */
-    public function createAccount(array $data)
-    {
+    public function createAccount(array $data) {
         return $this->client->sendRequest('post', 'account', $data);
     }
 
@@ -17,8 +16,7 @@ trait Account
      * @param  array  $data
      * @return Response
      */
-    public function updateAccount(array $data)
-    {
+    public function updateAccount(array $data) {
         return $this->client->sendRequest('put', 'account', $data);
     }
 
@@ -26,8 +24,7 @@ trait Account
      * @param  array  $data
      * @return Response
      */
-    public function deleteAccount(array $data)
-    {
+    public function deleteAccount(array $data) {
         return $this->client->sendRequest('delete', 'account', $data);
     }
 }
