@@ -58,7 +58,7 @@ class Client
      * @param array  $query
      * @return array
      */
-    public function sendRequest(string $method, string $path, array $body=[]): Response
+    public function sendRequest(string $method, string $path, array $body = []): Response
     {
         $request = new Request(
             $method,

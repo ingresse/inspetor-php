@@ -20,7 +20,7 @@ class Response
      * @param array|null $data
      * @param array|null $error
      */
-    function __construct(bool $isSuccess, ?array $data, array $error = null)
+    public function __construct(bool $isSuccess, ?array $data, array $error = null)
     {
         $this->data = $data;
         $this->error = $error;
