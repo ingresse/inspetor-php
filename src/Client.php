@@ -33,9 +33,9 @@ class Client
     /**
      * @param GuzzleHttp\Client $guzzleClient
      */
-    public function __construct(Client $guzzleClient = null)
+    public function __construct(GuzzleHttp\Client $guzzleClient = null)
     {
-        $this->client = $guzzleClient ?? new Client();
+        $this->client = $guzzleClient ?? new GuzzleHttp\Client();
     }
 
     /**
@@ -72,12 +72,37 @@ class Client
             !empty($body) ? json_encode($body) : null
         );
 
-        $response = $this->client->send($request);
+        $response = $this->call($request);
 
         return new Response(
             true,
             json_decode($response->getBody()->getContents(), true)['data']
         );
+    }
+
+    private function call(Request $request)
+    {
+        try {
+            return $this->client->send($request);
+        } catch (ClientException $e) {
+            if ($e->getResponse()->getStatusCode() == 403) {
+                throw new UnauthorizedException;
+            }
+            if ($e->getResponse()->getStatusCode() != 400) {
+                throw new ApiException(
+                    sprintf(
+                        'Inspetor returned an error code %s. Details: %s',
+                        $e->getResponse()->getStatusCode(),
+                        $e->getMessage()
+                    )
+                );
+            }
+            return new Response(
+                false,
+                null,
+                json_decode($e->getResponse()->getBody()->getContents(), true)['error']
+            );
+        }
     }
 
     /**
