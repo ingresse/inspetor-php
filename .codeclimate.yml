@@ -2,5 +2,9 @@ version: "2"
 plugins:
   phpcodesniffer:
     enabled: true
-  phpcodesniffer:
+  phpmd:
     enabled: true
+    config:
+      file_extensions:
+        - php
+      rulesets: "ruleset.xml"
