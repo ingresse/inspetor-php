@@ -24,10 +24,10 @@ jobs:
 
       - run: ./vendor/bin/phpunit
       - run: ./vendor/bin/phpcs
-      - run: ./vendor/bin/phpmd src/ html rulesets.xml --reportfile test-reports/phpmd.html
+      - run: ./vendor/bin/phpmd src/ html rulesets.xml --reportfile build/phpmd.html
 
       - store_test_results:
-          path: test-reports
+          path: build
 
       - store_artifacts:
-          path: test-reports
+          path: build
