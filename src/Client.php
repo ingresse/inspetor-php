@@ -120,7 +120,7 @@ class Client
     /**
      * @return array
      */
-    private function getDefaultHeaders(): array
+    protected function getDefaultHeaders(): array
     {
         return [
             'Authorization' => sprintf('Bearer %s', $this->token),
