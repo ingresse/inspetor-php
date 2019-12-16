@@ -1,8 +1,11 @@
 version: 2
 jobs:
   build:
+    environment:
+      CC_TEST_REPORTER_ID: 091fbe401ec087f0c93c2bebe6cac8263281aeb5baeac8580c7a9244b6889af4
     docker:
       - image: circleci/php:7.3-node-browsers
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -22,9 +25,21 @@ jobs:
           paths:
             - ./vendor
 
-      - run: ./vendor/bin/phpunit
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
       - run: ./vendor/bin/phpcs
-      - run: ./vendor/bin/phpmd src/ html rulesets.xml --reportfile build/phpmd.html
+      - run: ./vendor/bin/phpmd src/ text rulesets.xml
+
+      - run:
+          name: Run tests
+          command: |
+            ./cc-test-reporter before-build
+            sudo vendor/bin/phpunit --coverage-clover clover.xml
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
 
       - store_test_results:
           path: build
