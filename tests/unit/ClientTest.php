@@ -2,14 +2,14 @@
 
 namespace Inspetor\Client;
 
-use ApiException;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Response;
 use Inspetor\Client;
+use Inspetor\ApiException;
+use Inspetor\UnauthorizedException;
 use PHPUnit\Framework\TestCase;
-use UnauthorizedException;
 
 class ClientTest extends TestCase
 {
@@ -39,10 +39,11 @@ class ClientTest extends TestCase
 
     /**
      * @covers Inspetor\Client
-     * @expectedException Inspetor\UnauthorizedException
      */
     public function testInvalidToken()
     {
+        $this->expectException(UnauthorizedException::class);
+
         $container = [];
         $history = Middleware::history($container);
         $mock = new MockHandler([
@@ -80,10 +81,10 @@ class ClientTest extends TestCase
 
     /**
      * @covers Inspetor\Client
-     * @expectedException Inspetor\ApiException
      */
     public function testError()
     {
+        $this->expectException(ApiException::class);
         $container = [];
         $history = Middleware::history($container);
         $mock = new MockHandler([
