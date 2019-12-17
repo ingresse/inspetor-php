@@ -41,17 +41,6 @@ class Client
     }
 
     /**
-     * @param string $endpoint
-     */
-    public function setEndpoint(string $endpoint): void
-    {
-        if (substr($endpoint, -1) != '/') {
-            $endpoint .= '/';
-        }
-        $this->endpoint = $endpoint;
-    }
-
-    /**
      * @param string $method
      * @param string $path
      * @param array  $query
@@ -106,14 +95,6 @@ class Client
             $this->headers,
             $this->getDefaultHeaders()
         );
-    }
-
-    /**
-     * @param array $headers
-     */
-    public function setHeaders(array $headers): void
-    {
-        $this->headers = array_merge($this->headers, $headers);
     }
 
     /**
